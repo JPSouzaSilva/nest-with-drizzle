@@ -2,7 +2,7 @@ import { ExceptionsAdapter } from "@domain/adapters/exceptions";
 import { CustomerRepository } from "@domain/repositories/customer";
 import {
   CreateCustomerUseCaseInput,
-  CreateCustomerUseCaseType,
+  CreateCustomerUseCaseType
 } from "@domain/use-cases/customer/create";
 import { Injectable } from "@nestjs/common";
 import { randomUUID } from "node:crypto";
@@ -11,7 +11,7 @@ import { randomUUID } from "node:crypto";
 export class CreateCustomerUseCase implements CreateCustomerUseCaseType {
   constructor(
     private readonly customerRepository: CustomerRepository,
-    private readonly exceptionsAdapter: ExceptionsAdapter,
+    private readonly exceptionsAdapter: ExceptionsAdapter
   ) {}
 
   async execute({
@@ -21,7 +21,7 @@ export class CreateCustomerUseCase implements CreateCustomerUseCaseType {
     state,
     zipCode,
     country,
-    dateOfBirth,
+    dateOfBirth
   }: CreateCustomerUseCaseInput): Promise<void> {
     const customer = await this.customerRepository.findByEmail(email);
 
@@ -37,7 +37,7 @@ export class CreateCustomerUseCase implements CreateCustomerUseCaseType {
       state,
       zipCode,
       country,
-      dateOfBirth,
+      dateOfBirth
     });
   }
 }

@@ -7,10 +7,10 @@ const EXAMPLE = mockCustomerBuilder();
 export const FindCustomerByIdResponse = applyDecorators(
   ApiOperation({
     summary: "Find a customer by id",
-    description: "Find a customer by id",
+    description: "Find a customer by id"
   }),
   ApiOkResponse({
     description: "Customer found successfully",
-    example: EXAMPLE,
-  }),
+    example: EXAMPLE
+  })
 );

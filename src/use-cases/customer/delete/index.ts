@@ -2,7 +2,7 @@ import { ExceptionsAdapter } from "@domain/adapters/exceptions";
 import { CustomerRepository } from "@domain/repositories/customer";
 import {
   DeleteCustomerUseCaseInput,
-  DeleteCustomerUseCaseType,
+  DeleteCustomerUseCaseType
 } from "@domain/use-cases/customer/delete";
 import { Injectable } from "@nestjs/common";
 
@@ -10,7 +10,7 @@ import { Injectable } from "@nestjs/common";
 export class DeleteCustomerUseCase implements DeleteCustomerUseCaseType {
   constructor(
     private readonly customerRepository: CustomerRepository,
-    private readonly exceptionsAdapter: ExceptionsAdapter,
+    private readonly exceptionsAdapter: ExceptionsAdapter
   ) {}
 
   async execute({ id }: DeleteCustomerUseCaseInput): Promise<void> {

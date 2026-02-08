@@ -1,6 +1,6 @@
 import {
   PaginatedResponse,
-  PaginationParams,
+  PaginationParams
 } from "@domain/constants/pagination";
 import { Customer } from "@domain/entities/customer";
 import { UseCase } from "..";

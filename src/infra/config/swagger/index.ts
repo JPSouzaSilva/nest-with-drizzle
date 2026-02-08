@@ -11,7 +11,7 @@ export class SwaggerConfig {
       .addSecurity("bearerAuth", {
         type: "http",
         scheme: "bearer",
-        bearerFormat: "JWT",
+        bearerFormat: "JWT"
       })
       .build();
 
@@ -24,9 +24,9 @@ export class SwaggerConfig {
         darkMode: true,
         layout: "modern",
         spec: {
-          content: document,
-        },
-      }),
+          content: document
+        }
+      })
     );
   }
 }

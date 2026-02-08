@@ -5,13 +5,13 @@ import {
   IsNotEmpty,
   IsPositive,
   IsString,
-  validateSync,
+  validateSync
 } from "class-validator";
 
 export enum Environment {
   LOCAL = "LOCAL",
   DEVELOPMENT = "DEVELOPMENT",
-  PRODUCTION = "PRODUCTION",
+  PRODUCTION = "PRODUCTION"
 }
 
 class EnvironmentVariables {
@@ -33,11 +33,11 @@ class EnvironmentVariables {
 export class EnvConfig {
   static validate(config: Record<string, unknown>): EnvironmentVariables {
     const validatedConfig = plainToInstance(EnvironmentVariables, config, {
-      enableImplicitConversion: true,
+      enableImplicitConversion: true
     });
 
     const errors = validateSync(validatedConfig, {
-      skipMissingProperties: false,
+      skipMissingProperties: false
     });
 
     if (errors.length > 0) {

@@ -10,15 +10,15 @@ import { DRIZZLE } from "./tokens";
       provide: DRIZZLE,
       useFactory(): NodePgDatabase {
         return drizzle(process.env.DATABASE_URL!, {
-          casing: "snake_case",
+          casing: "snake_case"
         });
-      },
+      }
     },
     {
       provide: CustomerRepository,
-      useClass: DrizzleCustomerRepository,
-    },
+      useClass: DrizzleCustomerRepository
+    }
   ],
-  exports: [CustomerRepository],
+  exports: [CustomerRepository]
 })
 export class DatabaseModule {}

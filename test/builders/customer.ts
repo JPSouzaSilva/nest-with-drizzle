@@ -2,7 +2,7 @@ import { Customer } from "@domain/entities/customer";
 import { faker } from "@faker-js/faker";
 
 export const mockCustomerBuilder = (
-  override: Partial<Customer> = {},
+  override: Partial<Customer> = {}
 ): Customer => {
   return {
     id: faker.string.uuid(),
@@ -13,6 +13,6 @@ export const mockCustomerBuilder = (
     zipCode: faker.location.zipCode(),
     country: faker.location.country(),
     dateOfBirth: faker.date.birthdate(),
-    ...override,
+    ...override
   };
 };

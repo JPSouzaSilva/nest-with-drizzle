@@ -13,15 +13,15 @@ async function bootstrap(): Promise<void> {
       transform: true,
       whitelist: true,
       forbidNonWhitelisted: true,
-      errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY,
-    }),
+      errorHttpStatusCode: HttpStatus.UNPROCESSABLE_ENTITY
+    })
   );
 
   app.enableCors({
     origin: ["*"],
     methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,
+    credentials: true
   });
 
   await app.listen(Number(process.env.PORT));

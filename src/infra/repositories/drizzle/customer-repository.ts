@@ -1,7 +1,7 @@
 import { Customer } from "@domain/entities/customer";
 import {
   CustomerRepository,
-  UpdateCustomerData,
+  UpdateCustomerData
 } from "@domain/repositories/customer";
 import { Inject, Injectable } from "@nestjs/common";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
@@ -10,7 +10,7 @@ import { eq } from "drizzle-orm";
 import { DRIZZLE } from "@infra/modules/database/tokens";
 import {
   PaginatedResponse,
-  PaginationParams,
+  PaginationParams
 } from "@domain/constants/pagination";
 
 @Injectable()
@@ -37,13 +37,13 @@ export class DrizzleCustomerRepository implements CustomerRepository {
       state: customer.state,
       zipCode: customer.zipCode,
       country: customer.country,
-      dateOfBirth: customer.dateOfBirth,
+      dateOfBirth: customer.dateOfBirth
     });
   }
 
   async findAll({
     page,
-    limit,
+    limit
   }: PaginationParams): Promise<PaginatedResponse<Customer>> {
     const [data, total] = await Promise.all([
       this.db
@@ -51,14 +51,14 @@ export class DrizzleCustomerRepository implements CustomerRepository {
         .from(schema.customers)
         .limit(limit)
         .offset((page - 1) * limit),
-      this.db.$count(schema.customers),
+      this.db.$count(schema.customers)
     ]);
 
     return {
       data,
       total,
       page,
-      limit,
+      limit
     };
   }
 
@@ -83,7 +83,7 @@ export class DrizzleCustomerRepository implements CustomerRepository {
         state: customer.state,
         zipCode: customer.zipCode,
         country: customer.country,
-        dateOfBirth: customer.dateOfBirth,
+        dateOfBirth: customer.dateOfBirth
       })
       .where(eq(schema.customers.id, id));
   }

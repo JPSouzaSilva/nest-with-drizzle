@@ -8,12 +8,12 @@ import { CustomerModule } from "./customer";
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [() => EnvConfig.validate(process.env)],
+      load: [() => EnvConfig.validate(process.env)]
     }),
     ExceptionsModule,
-    CustomerModule,
+    CustomerModule
   ],
   controllers: [],
-  providers: [],
+  providers: []
 })
 export class AppModule {}

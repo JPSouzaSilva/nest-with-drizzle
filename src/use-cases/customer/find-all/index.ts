@@ -2,7 +2,7 @@ import { CustomerRepository } from "@domain/repositories/customer";
 import {
   FindAllCustomersUseCaseInput,
   FindAllCustomersUseCaseOutput,
-  FindAllCustomersUseCaseType,
+  FindAllCustomersUseCaseType
 } from "@domain/use-cases/customer/find-all";
 import { Injectable } from "@nestjs/common";
 
@@ -12,7 +12,7 @@ export class FindAllCustomersUseCase implements FindAllCustomersUseCaseType {
 
   async execute({
     page,
-    limit,
+    limit
   }: FindAllCustomersUseCaseInput): Promise<FindAllCustomersUseCaseOutput> {
     return await this.customerRepository.findAll({ page, limit });
   }

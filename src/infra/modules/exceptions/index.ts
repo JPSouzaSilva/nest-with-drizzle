@@ -6,9 +6,9 @@ import { Module } from "@nestjs/common";
   providers: [
     {
       provide: ExceptionsAdapter,
-      useClass: ExceptionsIntegration,
-    },
+      useClass: ExceptionsIntegration
+    }
   ],
-  exports: [ExceptionsAdapter],
+  exports: [ExceptionsAdapter]
 })
 export class ExceptionsModule {}

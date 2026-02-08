@@ -2,7 +2,7 @@ import { ExceptionsAdapter } from "@domain/adapters/exceptions";
 import { CustomerRepository } from "@domain/repositories/customer";
 import {
   UpdateCustomerUseCaseInput,
-  UpdateCustomerUseCaseType,
+  UpdateCustomerUseCaseType
 } from "@domain/use-cases/customer/update";
 import { Injectable } from "@nestjs/common";
 
@@ -10,7 +10,7 @@ import { Injectable } from "@nestjs/common";
 export class UpdateCustomerUseCase implements UpdateCustomerUseCaseType {
   constructor(
     private readonly customerRepository: CustomerRepository,
-    private readonly exceptionsAdapter: ExceptionsAdapter,
+    private readonly exceptionsAdapter: ExceptionsAdapter
   ) {}
 
   async execute({ id, data }: UpdateCustomerUseCaseInput): Promise<void> {
@@ -22,7 +22,7 @@ export class UpdateCustomerUseCase implements UpdateCustomerUseCaseType {
 
     if (data.email && data.email !== customer.email) {
       const existingCustomer = await this.customerRepository.findByEmail(
-        data.email,
+        data.email
       );
 
       if (existingCustomer) {
@@ -37,7 +37,7 @@ export class UpdateCustomerUseCase implements UpdateCustomerUseCaseType {
       state: data.state,
       zipCode: data.zipCode,
       country: data.country,
-      dateOfBirth: data.dateOfBirth,
+      dateOfBirth: data.dateOfBirth
     });
   }
 }

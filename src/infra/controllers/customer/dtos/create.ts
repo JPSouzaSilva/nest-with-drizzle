@@ -5,7 +5,7 @@ import { IsString, IsNotEmpty, IsEmail, IsDate } from "class-validator";
 export class CreateCustomerDto {
   @ApiProperty({
     description: "The name of the customer",
-    example: "John Doe",
+    example: "John Doe"
   })
   @IsString()
   @IsNotEmpty()
@@ -13,7 +13,7 @@ export class CreateCustomerDto {
 
   @ApiProperty({
     description: "The email of the customer",
-    example: "john.doe@example.com",
+    example: "john.doe@example.com"
   })
   @IsEmail()
   @IsNotEmpty()
@@ -21,7 +21,7 @@ export class CreateCustomerDto {
 
   @ApiProperty({
     description: "The address of the customer",
-    example: "123 Main St, Anytown, USA",
+    example: "123 Main St, Anytown, USA"
   })
   @IsString()
   @IsNotEmpty()
@@ -29,7 +29,7 @@ export class CreateCustomerDto {
 
   @ApiProperty({
     description: "The state of the customer",
-    example: "CA",
+    example: "CA"
   })
   @IsString()
   @IsNotEmpty()
@@ -37,7 +37,7 @@ export class CreateCustomerDto {
 
   @ApiProperty({
     description: "The zip code of the customer",
-    example: "12345",
+    example: "12345"
   })
   @IsString()
   @IsNotEmpty()
@@ -45,7 +45,7 @@ export class CreateCustomerDto {
 
   @ApiProperty({
     description: "The country of the customer",
-    example: "USA",
+    example: "USA"
   })
   @IsString()
   @IsNotEmpty()
@@ -53,7 +53,7 @@ export class CreateCustomerDto {
 
   @ApiProperty({
     description: "The date of birth of the customer",
-    example: "1990-01-01",
+    example: "1990-01-01"
   })
   @IsDate()
   @IsNotEmpty()

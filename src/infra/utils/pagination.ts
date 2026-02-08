@@ -5,7 +5,7 @@ import { IsInt, IsNotEmpty, Min } from "class-validator";
 export class PaginationDto {
   @ApiProperty({
     description: "The page number",
-    example: 1,
+    example: 1
   })
   @IsInt()
   @Min(1)
@@ -15,7 +15,7 @@ export class PaginationDto {
 
   @ApiProperty({
     description: "The page size",
-    example: 10,
+    example: 10
   })
   @IsInt()
   @Min(1)

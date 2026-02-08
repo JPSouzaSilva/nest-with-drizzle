@@ -21,7 +21,7 @@ import {
   Param,
   Patch,
   Post,
-  Query,
+  Query
 } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { PaginationDto } from "@infra/utils/pagination";
@@ -35,7 +35,7 @@ export class CustomerController {
     private readonly deleteCustomerUseCase: DeleteCustomerUseCase,
     private readonly findCustomerByIdUseCase: FindCustomerByIdUseCase,
     private readonly findAllCustomersUseCase: FindAllCustomersUseCase,
-    private readonly updateCustomerUseCase: UpdateCustomerUseCase,
+    private readonly updateCustomerUseCase: UpdateCustomerUseCase
   ) {}
 
   @Post()
@@ -48,7 +48,7 @@ export class CustomerController {
       state: createCustomerDto.state,
       zipCode: createCustomerDto.zipCode,
       country: createCustomerDto.country,
-      dateOfBirth: createCustomerDto.dateOfBirth,
+      dateOfBirth: createCustomerDto.dateOfBirth
     });
   }
 
@@ -61,11 +61,11 @@ export class CustomerController {
   @Get()
   @FindAllCustomersResponse
   async findAll(
-    @Query() query: PaginationDto,
+    @Query() query: PaginationDto
   ): Promise<PaginatedResponse<Customer>> {
     return await this.findAllCustomersUseCase.execute({
       limit: query.limit,
-      page: query.page,
+      page: query.page
     });
   }
 
@@ -74,7 +74,7 @@ export class CustomerController {
   @UpdateCustomerResponse
   async update(
     @Param("id") id: string,
-    @Body() updateCustomerDto: UpdateCustomerDto,
+    @Body() updateCustomerDto: UpdateCustomerDto
   ): Promise<void> {
     return await this.updateCustomerUseCase.execute({
       id,
@@ -85,8 +85,8 @@ export class CustomerController {
         state: updateCustomerDto.state,
         zipCode: updateCustomerDto.zipCode,
         country: updateCustomerDto.country,
-        dateOfBirth: updateCustomerDto.dateOfBirth,
-      },
+        dateOfBirth: updateCustomerDto.dateOfBirth
+      }
     });
   }
 

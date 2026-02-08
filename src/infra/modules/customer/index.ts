@@ -15,8 +15,8 @@ import { CustomerController } from "@infra/controllers/customer";
     FindCustomerByIdUseCase,
     FindAllCustomersUseCase,
     UpdateCustomerUseCase,
-    DeleteCustomerUseCase,
+    DeleteCustomerUseCase
   ],
-  controllers: [CustomerController],
+  controllers: [CustomerController]
 })
 export class CustomerModule {}

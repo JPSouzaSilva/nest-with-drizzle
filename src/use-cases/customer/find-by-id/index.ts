@@ -3,7 +3,7 @@ import { Customer } from "@domain/entities/customer";
 import { CustomerRepository } from "@domain/repositories/customer";
 import {
   FindCustomerByIdUseCaseInput,
-  FindCustomerByIdUseCaseType,
+  FindCustomerByIdUseCaseType
 } from "@domain/use-cases/customer/find-by-id";
 import { Injectable } from "@nestjs/common";
 
@@ -11,11 +11,11 @@ import { Injectable } from "@nestjs/common";
 export class FindCustomerByIdUseCase implements FindCustomerByIdUseCaseType {
   constructor(
     private readonly customerRepository: CustomerRepository,
-    private readonly exceptionsAdapter: ExceptionsAdapter,
+    private readonly exceptionsAdapter: ExceptionsAdapter
   ) {}
 
   async execute({
-    id,
+    id
   }: FindCustomerByIdUseCaseInput): Promise<Customer | void> {
     const customer = await this.customerRepository.findById(id);
 
