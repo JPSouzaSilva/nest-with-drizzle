@@ -9,6 +9,15 @@ services:
       - "5832:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+  
+  jaeger:
+    image: jaegertracing/all-in-one:1.57
+    ports:
+      - "16686:16686" # UI
+      - "6831:6831/udp" # Send traces UDP
+      - "14268:14268" # Send traces HTTP
+      - "4317:4317" # OTP gRPC
+      - "4318:4318" # OTP HTTP
 
 volumes:
   postgres_data:

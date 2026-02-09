@@ -7,9 +7,9 @@ if (!process.env.DATABASE_URL) {
 export default defineConfig({
   dialect: "postgresql",
   dbCredentials: {
-    url: process.env.DATABASE_URL,
+    url: process.env.DATABASE_URL
   },
   schema: "drizzle/schema/*",
   out: "drizzle/migrations",
-  casing: "snake_case",
+  casing: "snake_case"
 });

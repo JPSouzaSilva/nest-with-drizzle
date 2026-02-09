@@ -28,6 +28,15 @@ class EnvironmentVariables {
   @IsNotEmpty()
   @IsEnum(Environment)
   NODE_ENV: Environment;
+
+  // Tracing
+  @IsString()
+  @IsNotEmpty()
+  OTEL_SERVICE_NAME: string;
+
+  @IsString()
+  @IsNotEmpty()
+  OTEL_EXPORTER_OTLP_ENDPOINT: string;
 }
 
 export class EnvConfig {

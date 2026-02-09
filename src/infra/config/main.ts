@@ -2,6 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { AppModule } from "../modules";
 import { HttpStatus, ValidationPipe } from "@nestjs/common";
 import { SwaggerConfig } from "@infra/config/swagger";
+import "@infra/config/tracing";
 
 async function bootstrap(): Promise<void> {
   const app = await NestFactory.create(AppModule);
