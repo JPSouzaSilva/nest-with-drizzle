@@ -8,5 +8,5 @@ export const customers = pgTable("customers", {
   state: text().notNull(),
   zipCode: text().notNull(),
   country: text().notNull(),
-  dateOfBirth: date({ mode: "date" }).notNull(),
+  dateOfBirth: date({ mode: "date" }).notNull()
 });
