@@ -1,5 +1,1 @@
-import { customers } from "./customer";
-
-export const schema = {
-  customers
-};
+export * from "./customer";

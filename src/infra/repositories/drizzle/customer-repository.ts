@@ -5,7 +5,7 @@ import {
 } from "@domain/repositories/customer";
 import { Inject, Injectable } from "@nestjs/common";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
-import { schema } from "drizzle/schema";
+import { customers } from "drizzle/schema";
 import { eq } from "drizzle-orm";
 import { DRIZZLE } from "@infra/modules/database/tokens";
 import {
@@ -20,8 +20,8 @@ export class DrizzleCustomerRepository implements CustomerRepository {
   async findByEmail(email: string): Promise<Customer | null> {
     const [customer] = await this.db
       .select()
-      .from(schema.customers)
-      .where(eq(schema.customers.email, email));
+      .from(customers)
+      .where(eq(customers.email, email));
 
     if (!customer) return null;
 
@@ -29,7 +29,7 @@ export class DrizzleCustomerRepository implements CustomerRepository {
   }
 
   async create(customer: Customer): Promise<void> {
-    await this.db.insert(schema.customers).values({
+    await this.db.insert(customers).values({
       id: customer.id,
       name: customer.name,
       email: customer.email,
@@ -48,10 +48,10 @@ export class DrizzleCustomerRepository implements CustomerRepository {
     const [data, total] = await Promise.all([
       this.db
         .select()
-        .from(schema.customers)
+        .from(customers)
         .limit(limit)
         .offset((page - 1) * limit),
-      this.db.$count(schema.customers)
+      this.db.$count(customers)
     ]);
 
     return {
@@ -65,8 +65,8 @@ export class DrizzleCustomerRepository implements CustomerRepository {
   async findById(id: string): Promise<Customer | null> {
     const [customer] = await this.db
       .select()
-      .from(schema.customers)
-      .where(eq(schema.customers.id, id));
+      .from(customers)
+      .where(eq(customers.id, id));
 
     if (!customer) return null;
 
@@ -75,7 +75,7 @@ export class DrizzleCustomerRepository implements CustomerRepository {
 
   async update(id: string, customer: UpdateCustomerData): Promise<void> {
     await this.db
-      .update(schema.customers)
+      .update(customers)
       .set({
         name: customer.name,
         email: customer.email,
@@ -85,10 +85,10 @@ export class DrizzleCustomerRepository implements CustomerRepository {
         country: customer.country,
         dateOfBirth: customer.dateOfBirth
       })
-      .where(eq(schema.customers.id, id));
+      .where(eq(customers.id, id));
   }
 
   async delete(id: string): Promise<void> {
-    await this.db.delete(schema.customers).where(eq(schema.customers.id, id));
+    await this.db.delete(customers).where(eq(customers.id, id));
   }
 }
