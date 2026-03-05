@@ -1,6 +1,9 @@
 import { Module } from "@nestjs/common";
 import { DatabaseModule } from "../database";
 import { ExceptionsModule } from "../exceptions";
+import { HashModule } from "../hash";
+import { TotpModule } from "../totp";
+import { TokenModule } from "../token";
 import { CreateCustomerUseCase } from "src/use-cases/customer/create";
 import { FindAllCustomersUseCase } from "src/use-cases/customer/find-all";
 import { FindCustomerByIdUseCase } from "src/use-cases/customer/find-by-id";
@@ -9,7 +12,13 @@ import { DeleteCustomerUseCase } from "src/use-cases/customer/delete";
 import { CustomerController } from "@infra/controllers/customer";
 
 @Module({
-  imports: [DatabaseModule, ExceptionsModule],
+  imports: [
+    DatabaseModule,
+    ExceptionsModule,
+    HashModule,
+    TotpModule,
+    TokenModule
+  ],
   providers: [
     CreateCustomerUseCase,
     FindCustomerByIdUseCase,

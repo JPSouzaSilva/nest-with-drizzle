@@ -3,6 +3,7 @@ import {
   CustomerRepository,
   UpdateCustomerData
 } from "@domain/repositories/customer";
+import { CustomerMapper } from "@infra/mappers/customer";
 import { Inject, Injectable } from "@nestjs/common";
 import { NodePgDatabase } from "drizzle-orm/node-postgres";
 import { customers } from "drizzle/schema";
@@ -25,7 +26,7 @@ export class DrizzleCustomerRepository implements CustomerRepository {
 
     if (!customer) return null;
 
-    return customer;
+    return CustomerMapper.toDomain(customer);
   }
 
   async create(customer: Customer): Promise<void> {
@@ -33,11 +34,14 @@ export class DrizzleCustomerRepository implements CustomerRepository {
       id: customer.id,
       name: customer.name,
       email: customer.email,
+      password: customer.password,
       address: customer.address,
       state: customer.state,
       zipCode: customer.zipCode,
       country: customer.country,
-      dateOfBirth: customer.dateOfBirth
+      dateOfBirth: customer.dateOfBirth,
+      role: customer.role,
+      totpSecret: customer.totpSecret
     });
   }
 
@@ -55,7 +59,7 @@ export class DrizzleCustomerRepository implements CustomerRepository {
     ]);
 
     return {
-      data,
+      data: data.map(CustomerMapper.toDomain),
       total,
       page,
       limit
@@ -70,7 +74,7 @@ export class DrizzleCustomerRepository implements CustomerRepository {
 
     if (!customer) return null;
 
-    return customer;
+    return CustomerMapper.toDomain(customer);
   }
 
   async update(id: string, customer: UpdateCustomerData): Promise<void> {

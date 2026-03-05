@@ -3,6 +3,7 @@ import { ConfigModule } from "@nestjs/config";
 import { EnvConfig } from "../config/env";
 import { ExceptionsModule } from "./exceptions";
 import { CustomerModule } from "./customer";
+import { AuthModule } from "./auth";
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { CustomerModule } from "./customer";
       load: [() => EnvConfig.validate(process.env)]
     }),
     ExceptionsModule,
-    CustomerModule
+    CustomerModule,
+    AuthModule
   ],
   controllers: [],
   providers: []

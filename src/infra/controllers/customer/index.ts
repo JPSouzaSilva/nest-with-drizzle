@@ -26,6 +26,7 @@ import {
 import { ApiTags } from "@nestjs/swagger";
 import { PaginationDto } from "@infra/utils/pagination";
 import { UpdateCustomerDto } from "./dtos/update";
+import { CreateCustomerUseCaseOutput } from "@domain/use-cases/customer/create";
 
 @ApiTags("Customer")
 @Controller("customers")
@@ -40,7 +41,9 @@ export class CustomerController {
 
   @Post()
   @CreateCustomerResponse
-  async create(@Body() createCustomerDto: CreateCustomerDto): Promise<void> {
+  async create(
+    @Body() createCustomerDto: CreateCustomerDto
+  ): Promise<CreateCustomerUseCaseOutput> {
     return await this.createCustomerUseCase.execute({
       name: createCustomerDto.name,
       email: createCustomerDto.email,
@@ -48,7 +51,9 @@ export class CustomerController {
       state: createCustomerDto.state,
       zipCode: createCustomerDto.zipCode,
       country: createCustomerDto.country,
-      dateOfBirth: createCustomerDto.dateOfBirth
+      dateOfBirth: createCustomerDto.dateOfBirth,
+      password: createCustomerDto.password,
+      role: createCustomerDto.role
     });
   }
 

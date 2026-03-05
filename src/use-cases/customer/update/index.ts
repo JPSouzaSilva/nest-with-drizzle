@@ -1,4 +1,5 @@
 import { ExceptionsAdapter } from "@domain/adapters/exceptions";
+import { HashAdapter } from "@domain/adapters/hash";
 import { CustomerRepository } from "@domain/repositories/customer";
 import {
   UpdateCustomerUseCaseInput,
@@ -10,6 +11,7 @@ import { Injectable } from "@nestjs/common";
 export class UpdateCustomerUseCase implements UpdateCustomerUseCaseType {
   constructor(
     private readonly customerRepository: CustomerRepository,
+    private readonly hashAdapter: HashAdapter,
     private readonly exceptionsAdapter: ExceptionsAdapter
   ) {}
 
@@ -30,9 +32,14 @@ export class UpdateCustomerUseCase implements UpdateCustomerUseCaseType {
       }
     }
 
+    const hashedPassword = data.password
+      ? await this.hashAdapter.hash(data.password)
+      : undefined;
+
     await this.customerRepository.update(id, {
       name: data.name,
       email: data.email,
+      password: hashedPassword,
       address: data.address,
       state: data.state,
       zipCode: data.zipCode,

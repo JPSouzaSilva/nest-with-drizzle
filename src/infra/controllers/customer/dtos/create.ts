@@ -1,6 +1,14 @@
+import { CustomerRole } from "@domain/entities/customer-role";
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsString, IsNotEmpty, IsEmail, IsDate } from "class-validator";
+import {
+  IsDate,
+  IsEmail,
+  IsEnum,
+  IsNotEmpty,
+  IsString,
+  MinLength
+} from "class-validator";
 
 export class CreateCustomerDto {
   @ApiProperty({
@@ -18,6 +26,15 @@ export class CreateCustomerDto {
   @IsEmail()
   @IsNotEmpty()
   email: string;
+
+  @ApiProperty({
+    description: "The password of the customer",
+    example: "StrongP@ss123"
+  })
+  @IsString()
+  @IsNotEmpty()
+  @MinLength(6)
+  password: string;
 
   @ApiProperty({
     description: "The address of the customer",
@@ -59,4 +76,13 @@ export class CreateCustomerDto {
   @IsNotEmpty()
   @Type(() => Date)
   dateOfBirth: Date;
+
+  @ApiProperty({
+    description: "The role of the customer",
+    enum: CustomerRole,
+    example: CustomerRole.NORMAL
+  })
+  @IsEnum(CustomerRole)
+  @IsNotEmpty()
+  role: CustomerRole;
 }
